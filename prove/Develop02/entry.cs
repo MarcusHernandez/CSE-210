@@ -1,9 +1,9 @@
 public class Entry
 {
 
-public entry()
+public string BeginEntry()
 {
-
+    return "entry";
 }
 
 public string AddDate()
