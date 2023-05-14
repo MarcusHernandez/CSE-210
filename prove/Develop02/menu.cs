@@ -3,6 +3,8 @@ public class Menu
     private Prompt _prompt;
     Journal journal = new Journal();
     Prompt jp = new Prompt();
+    private Prompt promptdata;
+
     public Menu(Prompt prompt)
     {
         _prompt = prompt;
@@ -28,7 +30,7 @@ public class Menu
             Console.WriteLine($"{_prompt.GetRandomPrompt}\n");
             Console.Write("--> ");
             string userEntry = Console.ReadLine();
-            Entry entry = new Entry(dateInfo,"",userEntry);
+            Entry entry = new Entry(dateInfo,promptdata,userEntry);
             entry.jEntry = userEntry;
              entry.dateTime = dateInfo;
             entry.Prompt = prompt;
