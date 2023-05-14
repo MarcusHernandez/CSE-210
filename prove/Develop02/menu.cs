@@ -23,7 +23,7 @@ public class Menu
         {
             case 1:
             string dateInfo = GetDateTime();
-            /* string prompt = jp.GetPrompt(); */
+             string prompt = jp.GetPrompt();
            
             Console.WriteLine($"{_prompt.GetRandomPrompt}\n");
             Console.Write("--> ");
@@ -31,7 +31,7 @@ public class Menu
             Entry entry = new Entry(dateInfo,"",userEntry);
             entry.jEntry = userEntry;
              entry.dateTime = dateInfo;
-    /**/        entry.Prompt = _prompt;
+            entry.Prompt = prompt;
             journal._journal.Add(entry);
             break;
             case 2:
