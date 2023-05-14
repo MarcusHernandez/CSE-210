@@ -18,4 +18,6 @@ public class Entry
     {
         return $"{_dateTime}\n, {_Prompt}\n, {_Entry}\n";
     }
+
+  
  }

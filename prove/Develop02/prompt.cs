@@ -14,13 +14,6 @@ public Prompt(string prompt)
 
     public List<Prompt> _jPrompt = new List<Prompt>();
 
- public void AddPrompt(Prompt prompt)
-    {
-        _jPrompt.Add(prompt);
-    }
- /* public Prompt()
- {
- } */
 
  public void GetRandomPrompt()
     {
@@ -28,8 +21,11 @@ public Prompt(string prompt)
         var randomNumber = random.Next(0,_jPrompt.Count);
         _jPrompt[randomNumber].GetPrompt();
     }
-
-public string GetPrompt()
+public void AddPrompt(Prompt prompt)
+    {
+        _jPrompt.Add(prompt);
+    }
+      public string GetPrompt()
 {
     return $"{_prompt}";
 }
