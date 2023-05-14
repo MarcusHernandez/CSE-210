@@ -1,24 +1,36 @@
+
 public class Prompt
 {
-    List<string> _prompts = new List<string>();
+
+private string _prompt = "";
+public Prompt(string prompt)
+{
+    _prompt = prompt;
+}
 
     public Prompt()
     {
-
     }
 
-    public string PickRandomPrompt()
+    public List<Prompt> _jPrompt = new List<Prompt>();
+
+ public void AddPrompt(Prompt prompt)
     {
-        return "This is the Prompt";
+        _jPrompt.Add(prompt);
     }
+ /* public Prompt()
+ {
+ } */
 
-    public void AddPrompt()
+ public void GetRandomPrompt()
     {
-
+        var random = new Random();
+        var randomNumber = random.Next(0,_jPrompt.Count);
+        _jPrompt[randomNumber].GetPrompt();
     }
 
-
-
-
-
+public string GetPrompt()
+{
+    return $"{_prompt}";
+}
 }
