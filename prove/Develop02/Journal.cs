@@ -11,9 +11,9 @@ public class Journal
  public void Display()
  {
  Console.WriteLine("\n-------------- Journal Entries -----------------");
- foreach (Entry journalEntry in _journal)
+ foreach (Entry Entry in _journal)
  {
- journalEntry.getEntry();
+ Entry.getEntry();
  }
  Console.WriteLine("-------------- End ---------------");
  }
