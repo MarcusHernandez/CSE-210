@@ -13,14 +13,14 @@ public class Team
 
     public void AddPlayer(Player p)
     {
-        foreach (Player existingPlayer in _roster)
+       /*  foreach (Player existingPlayer in _roster)
         {
             if (p.GetJersey() == existingPlayer.GetJersey()){
                 Console.WriteLine("Can't add a player with the same Jersey number");
                 return;
             }
-        }
-      //  _roster.Add(p);
+        } */
+       _roster.Add(p);
     }
 
     public void AddWin()
@@ -38,10 +38,10 @@ public class Team
             p.Display();
         }
     }
-    public int GetJersey()
+    /* public int GetJersey()
     {
         return jerseyNumber;
-    }
+    } */
     public string GetTeamName()
     {
         return _name;

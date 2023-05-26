@@ -1,44 +1,36 @@
-
 public class Journal
 {
+    private List<Entry> _entries = new List<Entry>();
 
- public List<Entry> _journal = new List<Entry>();
- private string _userFileName;
-
- public Journal()
- {
- }
- public void Display()
- {
- Console.WriteLine("\n-------------- Journal Entries -----------------");
- foreach (Entry Entry in _journal)
- {
- Entry.getEntry();
- }
- Console.WriteLine("-------------- End ---------------");
- }
- 
- public void SaveJournalFile(string _userFileName)
- {
- using (StreamWriter outputFile = new StreamWriter(_userFileName))
- {
- foreach (Entry journalentry in _journal)
- {
- outputFile.WriteLine($"{journalentry.dateTime},{journalentry.Prompt},{journalentry.jEntry}");
- }
- }
- }
-
- public void LoadJournalFile()
- {
-    string[] lines = System.IO.File.ReadAllLines(_userFileName);
-    foreach (string line in lines)
+    public Journal()
     {
-        string[] parts = line.Split(",");
 
-        string dateTime = parts[0];
-        string journalPrompt = parts[1];
-        string journalEntry = parts[2];
     }
- }
+    public string AddEntry()
+    {
+        Entry newentry = new Entry();
+        newentry.newPrompt();
+        _entries.Add(newentry);
+        return "Entry was added";
+    }
+
+    public void DisplayAllEntries()
+    {
+        foreach (Entry entry in _entries)
+        {
+            entry.Display();
+        }
+        Console.WriteLine("Press Enter to Continue");
+        Console.ReadLine();
+    }
+
+    public void LoadEntries(List<Entry> entries)
+    {
+        _entries = entries;
+    }
+    public List<Entry> GetEntries()
+    {
+        return _entries;
+    }
+
 }

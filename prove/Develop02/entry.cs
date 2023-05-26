@@ -1,23 +1,39 @@
 public class Entry
 {
-    private string _dateTime = "";
-    private Prompt _Prompt;
-    private string _Entry = "";
-    public string _File = "";
-    internal object dateTime;
-    internal object Prompt;
-    internal object jEntry;
 
-    public Entry(string dateTime, Prompt Prompt, string jEntry)
+    private string _prompt="";
+    private string _response = "";
+    private string _dataText = "";
+    private string _structure = ",";
+
+    public Entry()
     {
-        _dateTime = dateTime;
-        _Prompt = Prompt;
-        _Entry = jEntry;
-    }
-    public string getEntry()
-    {
-        return $"{_dateTime}\n, {_Prompt}\n, {_Entry}\n";
+        _prompt = new Prompt().GetPrompt();
+        DateTime theCurrentDate = DateTime.Now;
+        _dataText = theCurrentDate.ToShortDateString();
     }
 
-  
- }
+    public void SplitList(String[] items)
+    {
+        _dataText = items[0];
+        _prompt = items[1];
+        _response = items[2];
+    }
+
+    public void newPrompt()
+    {
+        Console.WriteLine(_prompt);
+        _response = Console.ReadLine() ?? String.Empty;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"{_dataText}\n{_prompt}\n{_response}");
+    }
+
+    public string Stringify()
+    {
+        return $"{_dataText}{_structure}{_prompt}{_structure}{_response}";
+    }
+
+}

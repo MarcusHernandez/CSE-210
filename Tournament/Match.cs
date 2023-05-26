@@ -15,7 +15,7 @@ public class Match
         Console.WriteLine("Which Team won?");
         Console.WriteLine($"1) {_team1.GetTeamName()}");
         Console.WriteLine($"2) {_team2.GetTeamName()}");
-        string winner = Console.ReadLine();
+       /*  string winner = Console.ReadLine();
         if(winner == "1")
         {
             _team1.AddWin();
@@ -23,7 +23,7 @@ public class Match
         }
         else{
             _team2.AddWin();
-            _team1.AddLoss();
-        }
+            _team1.AddLoss(); */
+        /* } */
     }
 }

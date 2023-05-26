@@ -1,14 +1,47 @@
+Journal journalnew = new Journal();
+SaveLoad file = new SaveLoad();
+string message = string.Empty;
+string choice = "";
+while(choice != "5"){
+    Menu(message);
+    message = string.Empty;
+    choice = Console.ReadLine() ?? string.Empty;
+    switch (choice)
+    {
+        case "1":
+        message = journalnew.AddEntry();
+        break;
+        case "2":
+        journalnew.DisplayAllEntries();
+        break;
+        case "3":
+        List<Entry> entries = file.LoadFile();
+        journalnew.LoadEntries(entries);
+        message = "Load successfully";
+        break;
+        case "4":
+        file.WriteToFile(journalnew.GetEntries());
+        message = "Saved Successfully";
+        break;
+        case "5":
+        Environment.Exit(0);
+        break;
+    }
 
-Prompt _prompt = new Prompt();
-_prompt.AddPrompt(new Prompt("What did you have for Lunch?"));
-_prompt.AddPrompt(new Prompt("What did you have for Dinner?"));
-_prompt.AddPrompt(new Prompt("What was the Highlight of your day?"));
-_prompt.AddPrompt(new Prompt("What What would you do differenly today?"));
-_prompt.AddPrompt(new Prompt("Who was the best person you talk to today?"));
-_prompt.AddPrompt(new Prompt("What should you have done better today?"));
-_prompt.AddPrompt(new Prompt("How do you handle stress today?"));
-_prompt.AddPrompt(new Prompt("Why do you like programming?"));
-_prompt.AddPrompt(new Prompt("What could you change about your code?"));
-
-Menu _menu = new Menu(_prompt);
-_menu.Display();
+    void Menu (string message)
+    {
+        Console.Clear();
+        if(message != string.Empty)
+        {
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<");
+            Console.WriteLine(message);
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<");
+        }
+        Console.WriteLine("1 - Create Entry");
+        Console.WriteLine("2 - Display All Entries");
+        Console.WriteLine("3 - Load File");
+        Console.WriteLine("4 - Save File");
+        Console.WriteLine("5 - Exit\n");
+        Console.Write("What Would you Like to Do?");
+    }
+}
