@@ -1,67 +1,56 @@
-/* public class Scripture
-{
-    private List<Word> _Words = List<Word>();
-} */
-/* public class Scripture
-{
-
-    private string _Reference {get;}
-    private string _Text {get;}
-    private bool[] _HiddenWords{get;}
-
-    public Scripture(string reference, string text)
-    {
-        _Reference = reference;
-        _Text = text;
-        _HiddenWords = Enumerable.Repeat(false, text.Split('').Length).ToArray();
-    }
-
-
-
-} */
-
 class Scripture
 {
-    private Reference reference;
-    private List<Word> words;
+    private Reference _reference;
+    private List<Word> _text;
+    private List<Word> _hiddenWords;
 
-    public bool AllWordsHidden
+    public Scripture(Reference reference, List<Word> text)
     {
-        get { return words.TrueForAll(word => word.WordHidden()); }
+        _reference = reference;
+        _text = text;
+        _hiddenWords = new List<Word>();
     }
 
-    public Scripture(string referenceText, string scriptureText)
+    public bool HideRandomWord()
     {
-        reference = new Reference(referenceText);
-        words = new List<Word>();
+        List<Word> visibleWords = new List<Word>();
 
-        string[] wordArray = scriptureText.Split(' ');
-        for (int i = 0; i < wordArray.Length; i++)
+        foreach (Word word in _text)
         {
-            words.Add(new Word(wordArray[i]));
+            if (!_hiddenWords.Contains(word))
+            {
+                visibleWords.Add(word);
+            }
         }
+
+        if (visibleWords.Count == 0)
+        {
+            return false;
+        }
+
+        Random random = new Random();
+        int randomIndex = random.Next(visibleWords.Count);
+        _hiddenWords.Add(visibleWords[randomIndex]);
+        return true;
     }
 
     public void Display()
     {
-        Console.WriteLine(reference.GetReference());
-        foreach (Word word in words)
+        Console.Clear();
+        Console.WriteLine(_reference.GetReference());
+
+        foreach (Word word in _text)
         {
-            Console.Write(word.WordHidden() ? "____ " : $"{word.GetReference()} ");
+            if (_hiddenWords.Contains(word))
+            {
+                Console.Write("_____ ");
+            }
+            else
+            {
+                Console.Write(word.GetWord() + " ");
+            }
         }
+
         Console.WriteLine();
-    }
-
-    public void HideRandomWord()
-    {
-        Random random = new Random();
-        int index = random.Next(words.Count);
-
-        while (words[index].WordHidden())
-        {
-            index = random.Next(words.Count);
-        }
-
-       /*  words[index].WordHidden() = true; */
     }
 }
