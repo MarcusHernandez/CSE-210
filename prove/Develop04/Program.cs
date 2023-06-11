@@ -26,20 +26,25 @@ public class Program
                 case 1:
                     Activity breathingActivity = new BreathingActivity();
                     breathingActivity.RunActivity();
+                    Console.Clear();
                     break;
                 case 2:
                     Activity reflectionActivity = new ReflectionActivity();
                     reflectionActivity.RunActivity();
+                    Console.Clear();
                     break;
                 case 3:
                     Activity listingActivity = new ListingActivity();
                     listingActivity.RunActivity();
+                    Console.Clear();
                     break;
                 case 4:
                     Console.WriteLine("Exiting the program...");
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
+                    Console.Clear();
                     break;
             }
 
