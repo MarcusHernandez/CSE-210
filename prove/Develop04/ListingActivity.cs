@@ -1,6 +1,7 @@
+
 public class ListingActivity : Activity
 {
-    private List<string> _prompts = new List<string>
+    private List<string> _listingPrompts = new List<string>
     {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
@@ -9,20 +10,37 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    public ListingActivity() : base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
+    public ListingActivity() : base("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
     }
 
-    private void PerformActivity()
+    public override void RunActivity()
+    {
+        StartActivity();
+
+        string prompt = GetRandomPrompt();
+        Console.WriteLine(prompt);
+        Pause(5);
+
+        Console.WriteLine("Start listing items:");
+        List<string> items = new List<string>();
+
+        DateTime startTime = DateTime.Now;
+        while (DateTime.Now - startTime < TimeSpan.FromSeconds(_duration))
+        {
+            string item = Console.ReadLine();
+            items.Add(item);
+        }
+
+        Console.WriteLine($"You listed {items.Count} items.");
+
+        EndActivity();
+    }
+
+    private string GetRandomPrompt()
     {
         Random random = new Random();
-        string prompt = _prompts[random.Next(_prompts.Count)];
-        Console.WriteLine(prompt);
-        Pause(3);
-
-        Console.WriteLine("Start listing items...");
-        Pause(GetDuration());
-
-        Console.WriteLine($"Number of items listed: {GetDuration()}");
+        int index = random.Next(0, _listingPrompts.Count);
+        return _listingPrompts[index];
     }
 }

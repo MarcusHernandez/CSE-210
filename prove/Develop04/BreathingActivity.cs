@@ -1,21 +1,44 @@
+
 public class BreathingActivity : Activity
 {
-    private string[] _breathingMessages = { "Breathe in...", "Breathe out..." };
+    private List<string> _breathingPhrases = new List<string> { "Breathe in...", "Breathe out..." };
 
-    public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    public BreathingActivity() : base("Breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
     }
 
-    private void PerformActivity()
-    {
-        for (int i = 0; i < GetDuration(); i++)
+ protected override void Pause(int seconds)
+ {
+    for (int i = seconds; i > 0; i--)
         {
-            Console.WriteLine(_breathingMessages[i]);
-            Pause(2);
-            i++;
-            if (i>=2){
-                i=0;
+            Console.Write(i);
+            Thread.Sleep(1000);
+            if (i>=10 & i<=19){
+            Console.Write("\b\b  \b\b");
+            } else if(i>=1 & i<=9){
+                Console.Write("\b \b");
+            } else{
+                Console.Write("\b\b\b    \b\b\b");
             }
+
         }
+        Console.WriteLine();
+ }
+
+    public override void RunActivity()
+    {
+        StartActivity();
+
+        int phraseIndex = 0;
+        int durationCounter = 0;
+        while (durationCounter < _duration)
+        {
+            Console.Write(_breathingPhrases[phraseIndex]);
+            Pause(5);
+            phraseIndex = (phraseIndex + 1) % _breathingPhrases.Count;
+            durationCounter += 5;
+        }
+
+        EndActivity();
     }
 }

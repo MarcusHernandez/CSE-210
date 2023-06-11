@@ -1,76 +1,48 @@
-public class Activity
-{
-    private string _name;
-    private string _description;
-    private int _duration;
 
-    public Activity(string name, string description)
+public abstract class Activity
+{
+    protected string _activityName;
+    protected string _description;
+    protected int _duration;
+
+    protected Activity(string activityName, string description)
     {
-        _name = name;
+        _activityName = activityName;
         _description = description;
     }
 
-    public string GetName()
+    protected void StartActivity()
     {
-        return _name;
-    }
-
-    public string GetDescription()
-    {
-        return _description;
-    }
-
-    public int GetDuration()
-    {
-        Console.Write("Enter the duration for the activity (in seconds): ");
-        return int.Parse(Console.ReadLine());
-    }
-
-    public void Run()
-    {
-        DisplayStartingMessage();
-        PrepareToBegin();
-        PerformActivity();
-        DisplayEndingMessage();
-    }
-
-    private void DisplayStartingMessage()
-    {
-        Console.WriteLine($"Starting {_name} activity...");
+        Console.WriteLine($"Starting {_activityName} activity...");
         Console.WriteLine(_description);
-        _duration = GetDuration();
-        Console.WriteLine("Prepare to begin...");
+        SetDuration();
+        Console.WriteLine("Get ready to begin...");
         Pause(3);
     }
 
-    private void PrepareToBegin()
+    protected void EndActivity()
     {
-        Console.WriteLine("Get ready...");
-        Pause(3);
+        Console.WriteLine("Good job! You have completed the activity.");
+        Console.WriteLine($"You have completed {_activityName} for {_duration} seconds.");
+        Pause(5);
     }
 
-    private void PerformActivity()
+      protected virtual void Pause(int seconds)
     {
-        Console.WriteLine("Activity in progress...");
-        Pause(_duration);
-    }
-
-    private void DisplayEndingMessage()
-    {
-        Console.WriteLine("Good job!");
-        Console.WriteLine($"You have completed the {_name} activity.");
-        Console.WriteLine($"Total time: {_duration} seconds");
-        Pause(3);
-    }
-
-    protected void Pause(int seconds)
-    {
-        for (int i = seconds; i > 0; i--)
+        for (int i = seconds; i >= 1; i--)
         {
-            Console.Write(i);
+            Console.Write($"\rLoading... {i} ");
             Thread.Sleep(1000);
-            Console.Write("\b\b  \b\b");
         }
         Console.WriteLine();
     }
+
+
+    protected void SetDuration()
+    {
+        Console.Write("Enter the duration (in seconds): ");
+        _duration = int.Parse(Console.ReadLine());
+    }
+
+    public abstract void RunActivity();
 }
