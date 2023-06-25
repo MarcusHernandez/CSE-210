@@ -1,0 +1,4 @@
+SimpleGoal,run 10 miles,50,True
+EternalGoal,read scriptures,10,False
+ChecklistGoal,go to the temple,25,False
+Score,100
