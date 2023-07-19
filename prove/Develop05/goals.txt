@@ -1,4 +1,4 @@
-SimpleGoal,run 10 miles,50,True
+SimpleGoal,run 10 miles,50,False
 EternalGoal,read scriptures,10,False
-ChecklistGoal,go to the temple,25,False
-Score,100
+ChecklistGoal,go to temples,15,False
+Score,0

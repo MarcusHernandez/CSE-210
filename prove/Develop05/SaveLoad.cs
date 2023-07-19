@@ -19,8 +19,10 @@ public class SaveLoadManager
                     string description = goal.Description;
                     int points = goal.Points;
                     bool isCompleted = goal.IsCompleted;
+//                    int bonusP = goal.bonusPoints;
+//                    int TargetC = goal.targetCount;
 
-                    writer.WriteLine($"{goalType},{description},{points},{isCompleted}");
+                    writer.WriteLine($"{goalType}|||{description}|||{points}|||{isCompleted}");
                 }
 
                 writer.WriteLine($"Score,{score}");
@@ -46,7 +48,7 @@ public class SaveLoadManager
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(',');
+                    string[] parts = line.Split("|||");
 
                     if (parts.Length >= 4)
                     {
@@ -54,6 +56,8 @@ public class SaveLoadManager
                         string description = parts[1];
                         int points = int.Parse(parts[2]);
                         bool isCompleted = bool.Parse(parts[3]);
+//                        int BonusP = int.Parse(parts[4]);
+//                        int TargetC = int.Parse(parts[5]);
 
                         Goal goal = CreateGoalInstance(goalType, description, points, isCompleted);
                         goals.Add(goal);
